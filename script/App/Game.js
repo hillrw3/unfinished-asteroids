@@ -1,7 +1,7 @@
 app.game = {
 
-  start: function() {
-    
+  start: function () {
+
     this.entities = new ENGINE.Entities;
     this.collisions = new ENGINE.Collisions(this.entities);
     this.collisions.callback = this.collisionHandler.bind(this);
@@ -17,14 +17,14 @@ app.game = {
 
   },
 
-  collisionHandler: function(a, b) {
+  collisionHandler: function (a, b) {
 
   },
 
-  spawnAsteroid: function() {
-    
+  spawnAsteroid: function () {
+
     var angle = Math.random() * 6;
-    
+
     var x = Math.cos(angle) * app.width;
     var y = Math.sin(angle) * app.width;
 
@@ -36,7 +36,7 @@ app.game = {
 
   },
 
-  addPlayer: function(x, y, team) {
+  addPlayer: function (x, y, team) {
 
     var player = this.entities.add(ENGINE.Player, {
       team: team,
@@ -49,7 +49,7 @@ app.game = {
     return player;
   },
 
-  wrap: function(entity) {
+  wrap: function (entity) {
 
     entity.x = Utils.wrap(entity.x, -entity.radius, app.width + entity.radius);
     entity.y = Utils.wrap(entity.y, -entity.radius, app.height + entity.radius);
@@ -58,18 +58,18 @@ app.game = {
 
   /* events */
 
-  enter: function() {
+  enter: function () {
 
   },
 
-  step: function(delta) {
+  step: function (delta) {
 
     this.entities.step(delta);
     this.collisions.step(delta);
 
   },
 
-  render: function(delta) {
+  render: function (delta) {
 
     app.layer.clear("#003");
 
@@ -79,7 +79,7 @@ app.game = {
 
   },
 
-  keydown: function(e) {
+  keydown: function (e) {
     switch (e.key) {
       case "space":
         this.players[0].shooting = true;
@@ -96,7 +96,7 @@ app.game = {
     }
   },
 
-  keyup: function(e) {
+  keyup: function (e) {
     switch (e.key) {
       case "space":
         this.players[0].shooting = false;
@@ -105,7 +105,7 @@ app.game = {
         this.players[0].left = false;
         break;
       case "right":
-        this.players[0].left = false  ;
+        this.players[0].right = false;
         break;
       case "up":
         this.players[0].up = false;
